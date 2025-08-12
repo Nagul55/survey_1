@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saved Survey Responses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Saved Survey Responses</h1>
+    </header>
+    <main>
+        <div class="cutout-card large-card">
+            {% if responses %}
+                <ul style="list-style: none; padding: 0;">
+                    {% for resp in responses %}
+                        <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                            <strong>ID:</strong> {{ resp.id }} | <strong>Submitted At:</strong> {{ resp.submitted_at }}<br>
+                            <strong>User Details:</strong><br>
+                            <ul style="list-style: none; padding-left: 20px;">
+                                {% for key, value in resp.details.items() %}
+                                    <li>{{ key|capitalize }}: {{ value }}</li>
+                                {% endfor %}
+                            </ul>
+                            <strong>Answers:</strong><br>
+                            <ul style="list-style: none; padding-left: 20px;">
+                                {% for key, value in resp.answers.items() %}
+                                    <li>{{ key|capitalize }}: {{ value }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No responses saved yet.</p>
+            {% endif %}
+            <a href="/" class="button" style="margin-top: 20px;">Back to Home</a>
+        </div>
+    </main>
+    <footer>
+        <p>Data handled securely.</p>
+    </footer>
+</body>
+</html>

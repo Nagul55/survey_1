@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student Survey - Personal Details</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+</head>
+<body>
+    <header>
+        <h1>Enter Your Personal Details</h1>
+    </header>
+    <main>
+        <div class="cutout-card">
+            <form action="/" method="post">
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" placeholder="Enter your name" required />
+
+                <label for="regno">Register Number:</label>
+                <input id="regno" name="register_number" type="text" placeholder="Enter your register number" required />
+
+                <label for="college">College:</label>
+                <input id="college" name="college" type="text" placeholder="Enter your college name" required />
+
+                <label for="location">Location:</label>
+                <input id="location" name="location" type="text" placeholder="Enter your location" required />
+
+                <label for="language">Preferred Language (any):</label>
+                <input id="language" name="language" type="text" placeholder="Enter your preferred language" required />
+
+                <button type="submit">Next</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Student Survey App</p>
+    </footer>
+</body>
+</html>

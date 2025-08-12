@@ -1,0 +1,25 @@
+[
+  {
+    "id": "q1",
+    "question": "What is your age group?",
+    "options": ["Under 18", "18-25", "26-35", "36-50", "Above 50"]
+  },
+  {
+    "id": "q2",
+    "question": "How satisfied are you with campus facilities? (1-5)",
+    "options": ["1", "2", "3", "4", "5"]
+  },
+  {
+    "id": "q3",
+    "question": "What improvements would you suggest?"
+  },
+  {
+    "id": "q4",
+    "question": "Preferred language for surveys?",
+    "options": ["English", "Tamil", "Hindi", "Other"]
+  },
+  {
+    "id": "q5",
+    "question": "Any other feedback?"
+  }
+]

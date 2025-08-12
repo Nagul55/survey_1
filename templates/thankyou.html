@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thank You!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Thank You for Submitting the Survey!</h1>
+    </header>
+    <main>
+        <div class="cutout-card large-card" style="max-width:560px;">
+            <p style="font-size: 1.12em; color:#33a867; margin-bottom:12px;">🎉 Your response has been recorded successfully.</p>
+            <div class="profile-summary" style="margin-top:18px; margin-bottom:13px;">
+                <ul style="list-style:none; margin:0; padding:0; line-height:1.7;">
+                    {% if user_details.name %}
+                    <li><strong>Name:</strong> {{ user_details.name }}</li>
+                    {% endif %}
+                    {% if user_details.register_number %}
+                    <li><strong>Register Number:</strong> {{ user_details.register_number }}</li>
+                    {% endif %}
+                    {% if user_details.college %}
+                    <li><strong>College:</strong> {{ user_details.college }}</li>
+                    {% endif %}
+                    {% if user_details.location %}
+                    <li><strong>Location:</strong> {{ user_details.location }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <hr style="margin:18px 0 18px 0;">
+            <div class="final-answers">
+                <h3 style="font-weight:500; color:#7d42da; margin-bottom:11px;">Your Answers:</h3>
+                <ol style="margin-top:6px; color:#36435a; padding-left: 1.15em;">
+                    {% for q in questions %}
+                        <li>
+                            <span>{{ q.question }}</span>
+                            <div style="margin:6px 0 10px 0; color:#225c28;">
+                              <strong>{{ answers[q.id] if answers.get(q.id) else '—' }}</strong>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <a href="/" class="button" style="margin-top:18px;">Back to Home</a>
+        </div>
+    </main>
+    <footer>
+        <p>We value your input – data handled securely and ethically.</p>
+    </footer>
+</body>
+</html>

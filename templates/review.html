@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Your Answers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Review Your Survey Answers</h1>
+    </header>
+    <main>
+        <div class="cutout-card">
+            <form action="/submit" method="post">
+                {% for q in questions %}
+                <div class="question">
+                    <label>{{ q.question }}</label>
+                    <input type="text" name="{{ q.id }}" value="{{ answers[q.id] }}" required>
+                </div>
+                {% endfor %}
+                <button type="submit">Confirm and Submit</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>Secure and ethical data handling ensured.</p>
+    </footer>
+</body>
+</html>

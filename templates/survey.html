@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student Survey</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- Pass preferred language to JS -->
+    <script>
+        window.preferredLangInput = "{{ language | lower }}";
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Student Survey Form</h1>
+        <p>Click 🎙️ to hear the question & options, then answer by voice.</p>
+    </header>
+    <main>
+        <div class="cutout-card large-card">
+            <form action="/review" method="post">
+                {% for q in questions %}
+                <div class="question">
+                    <label>{{ q.question }}</label>
+                    {% if q.options %}
+                    <div class="options-container">
+                        {% for opt in q.options %}
+                        <label class="option-item">
+                            <input type="radio" name="{{ q.id }}" value="{{ opt }}" required />
+                            <span>{{ opt }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <button
+                        type="button"
+                        class="voice-btn"
+                        onclick="speakQuestion({{ q.id | tojson }}, {{ q.question | tojson }}, {{ q.options | tojson }})"
+                        aria-label="Speak question and available options"
+                    >
+                        🎙️ Speak Question & Answer
+                    </button>
+                    {% else %}
+                    <input type="text" id="{{ q.id }}" name="{{ q.id }}" placeholder="Enter your answer" required />
+                    <button
+                        type="button"
+                        class="voice-btn"
+                        onclick="speakText({{ q.question | tojson }}, function() { listenForTextInput({{ q.id | tojson }}); })"
+                        aria-label="Voice input for text answer"
+                    >
+                        🎤 Voice Input
+                    </button>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <button type="submit">Review Answers</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Include the external JavaScript file -->
+    <script src="{{ url_for('static', filename='js/survey.js') }}"></script>
+</body>
+</html>
